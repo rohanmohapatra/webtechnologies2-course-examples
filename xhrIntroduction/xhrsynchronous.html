@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Rohan | Using the XMLHttpRequest Object</h2>
+
+<div id="demo">
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+</div>
+
+<script>
+function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest();
+  //The last argument is false, making synchronous, hence the webpage will wait to get the request.
+  xhttp.open("GET", "xhr.php", false);
+  xhttp.send();
+  if(xhttp.status == 200){
+      alert("Data returned is : " + xhttp.responseText);
+  }
+  else {
+      alert("Error occured : " + xhttp.statusText);
+  }
+
+  //But remember, [Deprecation] Synchronous XMLHttpRequest on the main thread is deprecated because of its detrimental effects to the end user's experience.
+}
+</script>
+
+</body>
+</html>
