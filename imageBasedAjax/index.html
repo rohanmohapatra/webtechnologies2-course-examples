@@ -1,0 +1,50 @@
+<html>
+    <head><title>Rohan | Dynamically create images on the fly</title></head>
+    <body>
+        So here we create images on the fly and add it to the DOM,<br>
+        on the php side, we could either redirect the image or Dynamically create images on php.<br>
+        Code is available in the folder.<br>
+
+        Below are the representations, you will have to comment out whatever required in the script.<br><br>
+
+
+        php -v<br>
+        My version PHP 7.0.33-11+ubuntu18.04.1<br>
+        I installed sudo apt-get install php7.0-gd for images to work <br>
+
+        <form>
+                User Name: <input type="text" id="uname" onblur="checkUsername()"/><br/>
+                <div id="msg"></div>
+                <input type="button" id="sub" value="FetchProfileImage"/>
+        </form>
+        
+        <script>
+            function checkUsername(){
+                var uname = document.getElementById("uname").value;
+                
+                //Create an image node in JS and append to DOM
+                var img = document.createElement("img");
+                //Sends a redirected image stored on the server
+                //img.src = "redirect.php?uname="+uname;
+                //Uncomment, and comment above. This is php generates images on the fly, please see code
+                img.src = "generate.php?uname="+uname;
+                img.height = 150;
+                img.onload = success(img);
+                //img.onerror = failure(img);
+                //Two functions to handle success and failure.
+            }
+            function success(img){
+                alert("Image is ready");
+                
+                document.getElementById("msg").innerHTML= "Image is Ready";
+                document.getElementById("msg").append(img);
+                
+            }
+            function failure(img){
+                alert(img);
+                console.log(img);
+                document.getElementById("msg").innerHTML= "IError occurred! Sorry no profile picture";
+            }
+        </script>
+    </body>
+</html>
