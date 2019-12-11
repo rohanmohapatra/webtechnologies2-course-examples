@@ -1,0 +1,32 @@
+<html>
+    <head><title>Rohan | Hidden Frames GET</title></head>
+    <body>
+        <h1>asynchronously update the form from server</h1>
+        <form>
+            SRN: <input type="text" name="srn" id="srn" onblur="fetchDetails()"/> <br>
+            * On blur we will send the data to our php script which will update the name and cgpa fields on the bottom<br/>
+            Name: <input type="text" name="name" id="name" disabled/> <br>
+            CGPA: <input type="text" name="cgpa" id="cgpa" disabled/> <br>
+            
+            * There is a hidden frame at the bottom unseen doing ajax business
+            <iframe height="0" width="0" id="hframe" name="hframe"></iframe>
+        </form>
+        <script>
+                //funtion to fetchDetails from server
+                function fetchDetails(){
+                    var hframe = document.getElementById("hframe");
+                    var srn = document.getElementById("srn").value;
+                    hframe.src = "get.php?srn="+srn;                    
+                }
+
+                function setNameSrn(response){
+                    var result = response.split(";");
+                    var name = document.getElementById("name");
+                    var age = document.getElementById("cgpa");
+                    name.value = result[0];
+                    age.value = result[1];
+                }
+
+        </script>
+    </body>
+</html>

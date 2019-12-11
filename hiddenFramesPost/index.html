@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demonstration of Hidden Frames (POST)| Rohan Mohapatra</title>
+</head>
+<body>
+        <h1>asynchronously update the form from server</h1>
+        Traditionally, the only way to send POST requests was to use a form with its method attribute set to<br>
+        post . Then, the data contained in the form was sent in a POST request to the URL specified in the<br>
+        action attribute. Further complicating matters was the fact that a typical form submission navigates the<br>
+        page to the new URL. This completely defeats the purpose of Ajax. Thankfully, there is a very easy<br>
+        workaround in the form of a little-known attribute called target .<br>
+        Workaround for post,  target = "_self" or id of frame.
+	<form action="post.php" target="hidden" method="POST">
+	<input type="text" name="nameT" id ="name">
+	<input type="submit" value="Add to Server Array">
+	</form>
+	<h1 id="header"></h1> 
+	<iframe src="about:blank" id="hidden" name="hidden" height="30px"></iframe>
+</body>
+<script type="text/javascript">
+	global_name_array=[];
+	check = "";
+	function updateHere() {
+		document.getElementById("header").innerHTML = global_name_array;
+	}
+</script>
+</html>
